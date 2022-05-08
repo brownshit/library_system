@@ -69,19 +69,25 @@ class bookruling_sys:
         with open("c:/input.txt","rt",encoding='UTF8') as infile:
             infiles = infile.readlines()
             infiles = [line.rstrip("\n") for line in infiles]
+            listof_book = []
             book_name = input("수정할 도서제목 : ")
                 #book_name을 리스트화 시킨다
+            listof_book.append(book_name)
             for k in range(len(infiles)):
                 if book_name in infiles[k]:
                     remove_name1 = input("기존 정보 : ")
-                    remove_name2 = input("수정할 정보 : ")
-                        #list_sliced가 해당 line 리스트
-                        #remove_name1은 변경전 문자열
-                        #remove_name1은 변경후 문자열
-                    book_name.replace(remove_name1,remove_name2)
+                    for i in range(len(listof_book)):
+                        if remove_name1 in listof_book[i]:
+                            remove_name2 = input("수정할 정보 : ")
+                            book_name.replace(remove_name1,remove_name2)
+                            bookruling_sys.saving_info()
+                            print("수정완료...!")
+                            #book_name.replace(remove_name1,remove_name2)
+                            #listof_book이 해당 book_name 리스트
+                            #remove_name1은 변경전 문자열
+                            #remove_name1은 변경후 문자열        
                 else:
                     continue
-        print("수정완료...!")
     #4. 도서 삭제 함수
     def delete_book():
         print("\n[도서 삭제]\n")
@@ -91,11 +97,11 @@ class bookruling_sys:
             book_name = input("삭제할 도서제목 : ")
             for k in range(len(infiles)):
                 if book_name in infiles[k]:
-                    del infiles[k]
+                    del book_name
+                    bookruling_sys.saving_info()
         #이제 list_sliced를 통해 삭제하면 된다.
 
         print("삭제하였습니다.")
-
     #5. 현재 총 도서 목록 출력 함수
     def print_all_book():
         print("\n[현재 총 도서 목록]\n")
@@ -105,6 +111,15 @@ class bookruling_sys:
                 line = line.strip() #줄 끝의 줄 바꿈 문자를 제거한다.
                 print(line)
             #lines는 도서목록을 담고있는 리스트가 된다.
+    #저장함수
+    def saving_info():
+        with open("c:/input.txt","wt",encoding='UTF8') as f:
+            F = f.readlines()
+            F = [line.rstrip("\n") for line in F]
+            for i in F:
+                f.writelines(i)
+                f.write("\n")
+
     #main
     def main_func():
         print("[도서관리 프로그램]\n<Menu>\n[1. 도서목록추가]\n[2. 도서검색]\n[3. 도서정보수정]\n[4. 도서삭제]\n[5. 현재 총 도서 목록 출력]\n[6. 프로그램 종료]")
