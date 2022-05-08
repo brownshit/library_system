@@ -1,4 +1,4 @@
-with open("c:/input.txt","rt") as f:
+with open("c:/input.txt","rt",encoding='UTF8') as f:
     lines = f.readlines()
     for line in lines:
         line = line.strip() #줄 끝의 줄 바꿈 문자를 제거한다.
@@ -11,7 +11,7 @@ class bookruling_sys:
         print("\n[도서목록 추가]\n")
             #자동으로 파일을열고 닫음
     
-        with open("c:/input.txt","at") as infile:
+        with open("c:/input.txt","at",encoding='UTF8') as infile:
             print("[추가할 도서명 / 저자 / 출판년도 / 출판사 / 장르] 순으로 입력.")   
             new_line = input("새로운 정보 입력: ")
             infile.write("\n")
@@ -21,7 +21,7 @@ class bookruling_sys:
     # 리스트에 해당 줄을 싹다 반환하는 함수___#3 #4 함수에서호출 할 수 있도록 하자!!   
     def find_book():
         print("\n[도서검색]\n")
-        with open("c:/input.txt","rt") as infile:
+        with open("c:/input.txt","rt",encoding='UTF8') as infile:
             print("찾을 정보 분류\n[1.도서명, 2.저자, 3.출판년도, 4.출판사, 5.장르]")
             number = int(input("분류 번호 입력 : "))
             if number == 1:
@@ -66,29 +66,32 @@ class bookruling_sys:
     #3. 도서 정보 수정함수
     def change_info():
         print("\n[도서 정보 수정]\n")
-        book_name = input("수정할 도서제목 : ")
-        list_step = list.find(lines, book_name)
-        for k in lines:
-            if list_step != -1:
-                list_sliced = lines[k]
-                remove_name1 = input("기존 정보 : ")
-                remove_name2 = input("수정할 정보 : ")
-                #list_sliced가 해당 line 리스트
-                #remove_name1은 변경전 문자열
-                #remove_name1은 변경후 문자열
-                list_sliced.replace(remove_name1,remove_name2)
-            else:
-                continue
+        with open("c:/input.txt","rt",encoding='UTF8') as infile:
+            infiles = infile.readlines()
+            infiles = [line.rstrip("\n") for line in infiles]
+            book_name = input("수정할 도서제목 : ")
+                #book_name을 리스트화 시킨다
+            for k in range(len(infiles)):
+                if book_name in infiles[k]:
+                    remove_name1 = input("기존 정보 : ")
+                    remove_name2 = input("수정할 정보 : ")
+                        #list_sliced가 해당 line 리스트
+                        #remove_name1은 변경전 문자열
+                        #remove_name1은 변경후 문자열
+                    book_name.replace(remove_name1,remove_name2)
+                else:
+                    continue
         print("수정완료...!")
     #4. 도서 삭제 함수
     def delete_book():
         print("\n[도서 삭제]\n")
-        with open("c:/input.txt","rt") as infile:
+        with open("c:/input.txt","rt",encoding='UTF8') as infile:
+            infiles = infile.readlines()
+            infiles = [line.rstrip("\n") for line in infiles]
             book_name = input("삭제할 도서제목 : ")
-        list_step = str.find(lines, book_name)
-        for k in lines:
-            if list_step != -1:
-                del lines[k]
+            for k in range(len(infiles)):
+                if book_name in infiles[k]:
+                    del infiles[k]
         #이제 list_sliced를 통해 삭제하면 된다.
 
         print("삭제하였습니다.")
@@ -96,7 +99,7 @@ class bookruling_sys:
     #5. 현재 총 도서 목록 출력 함수
     def print_all_book():
         print("\n[현재 총 도서 목록]\n")
-        with open("c:/input.txt","rt") as f:
+        with open("c:/input.txt","rt",encoding='UTF8') as f:
             lines = f.readlines()
             for line in lines:
                 line = line.strip() #줄 끝의 줄 바꿈 문자를 제거한다.
