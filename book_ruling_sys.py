@@ -63,45 +63,49 @@ class bookruling_sys:
             else:
                 print("잘못된 번호 입력. 번호 재입력이 필요합니다.")
                 bookruling_sys.find_book()
+    
+
     #3. 도서 정보 수정함수
+    
+    #여기가 문제이다
     def change_info():
         print("\n[도서 정보 수정]\n")
         with open("c:/input.txt","rt",encoding='UTF8') as infile:
             infiles = infile.readlines()
             infiles = [line.rstrip("\n") for line in infiles]
-            listof_book = []
+            #infiles가 리스트 형태로 저장이 된다.
+        
+            for i in range(len(infiles)):
+                infiles[i].split()
+
             book_name = input("수정할 도서제목 : ")
-                #book_name을 리스트화 시킨다
-            listof_book.append(book_name)
-            for k in range(len(infiles)):
-                if book_name in infiles[k]:
-                    remove_name1 = input("기존 정보 : ")
-                    for i in range(len(listof_book)):
-                        if remove_name1 in listof_book[i]:
-                            remove_name2 = input("수정할 정보 : ")
-                            book_name.replace(remove_name1,remove_name2)
-                            bookruling_sys.saving_info()
-                            print("수정완료...!")
-                            #book_name.replace(remove_name1,remove_name2)
-                            #listof_book이 해당 book_name 리스트
-                            #remove_name1은 변경전 문자열
-                            #remove_name1은 변경후 문자열        
+                
+            for i in range(len(infiles)-1):
+                remove_name1 = input("기존 정보 : ")
+                remove_name2 = input("수정할 정보 : ")
+                if remove_name1 == infiles[i][0]:
+                    infiles[i].replace(infiles[i][0], remove_name2)
                 else:
+                    print("...\n")
                     continue
+
     #4. 도서 삭제 함수
     def delete_book():
         print("\n[도서 삭제]\n")
         with open("c:/input.txt","rt",encoding='UTF8') as infile:
             infiles = infile.readlines()
             infiles = [line.rstrip("\n") for line in infiles]
-            book_name = input("삭제할 도서제목 : ")
-            for k in range(len(infiles)):
-                if book_name in infiles[k]:
-                    del book_name
-                    bookruling_sys.saving_info()
-        #이제 list_sliced를 통해 삭제하면 된다.
 
-        print("삭제하였습니다.")
+            book_name = input("삭제할 도서제목 : ")
+            #book_name이 있는 리스트 슬라이스를 삭제한다.
+            
+            for k in range(len(infiles)-1):
+                if book_name in infiles[k][0]:
+                    infiles.remove(infiles[k])
+                    print("삭제하였습니다.")
+#IndexError: list index out of range 뭔데;;
+        
+
     #5. 현재 총 도서 목록 출력 함수
     def print_all_book():
         print("\n[현재 총 도서 목록]\n")
@@ -113,12 +117,13 @@ class bookruling_sys:
             #lines는 도서목록을 담고있는 리스트가 된다.
     #저장함수
     def saving_info():
-        with open("c:/input.txt","wt",encoding='UTF8') as f:
-            F = f.readlines()
-            F = [line.rstrip("\n") for line in F]
-            for i in F:
-                f.writelines(i)
-                f.write("\n")
+        with open("c:/input.txt","at",encoding='UTF8') as f1:
+            with open("c:/input.txt","rt",encoding='UTF8') as f:
+                F = f.readlines()
+                F = [line.rstrip("\n") for line in F]
+                for i in F:
+                    f1.writelines(i)
+                    f1.write("\n")
 
     #main
     def main_func():
