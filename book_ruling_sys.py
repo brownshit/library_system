@@ -1,3 +1,4 @@
+
 with open("c:/input.txt","rt",encoding='UTF8') as f:
     lines = f.readlines()
     for line in lines:
@@ -28,7 +29,7 @@ class bookruling_sys:
             splitline = []
             for i in range(len(infiles)):
                 splitline.append(infiles[i].split()) #스플릿 한 걸 할당해준다.
-            print(splitline)
+            #print(splitline)
 
             print("찾을 정보 분류\n[1.도서명, 2.저자, 3.출판년도, 4.출판사, 5.장르]")
             number = int(input("분류 번호 입력 : "))
@@ -91,9 +92,8 @@ class bookruling_sys:
             remove_name2 = input("새로운 도서제목 : ")
 
             for i in range(len(infiles)):
-                print(remove_name1)
-                print(splitline[i][0],"\n")
-                print(".")
+                #print(remove_name1)
+                #print(splitline[i][0],"\n")
                 if remove_name1 == splitline[i][0]:#if문 안에 들어가긴 한다.
 
                     with open("c:/input.txt","at",encoding='UTF8') as infile:
@@ -101,10 +101,9 @@ class bookruling_sys:
                         #del infiles[i]
                         #라인에 0번째 요소를 바꿔서 입력한다.
                         splitline[i][0] = remove_name2
-                        print(splitline)
+                        #print(splitline)
                         infiles = list(splitline)
                 else:
-                    print("...")
                     continue
             with open("c:/input.txt","w",encoding='UTF8') as infile:
                 for i in range(len(infiles)):
