@@ -1,4 +1,3 @@
-
 with open("c:/input.txt","rt",encoding='UTF8') as f:
     lines = f.readlines()
     for line in lines:
@@ -78,40 +77,143 @@ class bookruling_sys:
 
     #3. 도서 정보 수정함수
     def change_info():
-        print("\n[도서 정보 수정]\n")
-        with open("c:/input.txt","rt",encoding='UTF8') as infile:
-            infiles = infile.readlines()
-            infiles = [line.rstrip("\n") for line in infiles]
-            #infiles가 리스트 형태로 저장이 된다.
-        
-            splitline = []
-            for i in range(len(infiles)):
-                splitline.append(infiles[i].split()) #스플릿 한 걸 할당해준다.
-
-            remove_name1 = input("수정할 도서제목 : ")
-            remove_name2 = input("새로운 도서제목 : ")
-
-            for i in range(len(infiles)):
-                #print(remove_name1)
-                #print(splitline[i][0],"\n")
-                if remove_name1 == splitline[i][0]:#if문 안에 들어가긴 한다.
-
-                    with open("c:/input.txt","at",encoding='UTF8') as infile:
-                        #라인삭제
-                        #del infiles[i]
-                        #라인에 0번째 요소를 바꿔서 입력한다.
-                        splitline[i][0] = remove_name2
-                        #print(splitline)
-                        infiles = list(splitline)
-                else:
-                    continue
-            with open("c:/input.txt","w",encoding='UTF8') as infile:
+        while(1):
+            print("\n[도서 정보 수정]\n")
+            with open("c:/input.txt","rt",encoding='UTF8') as infile:
+                infiles = infile.readlines()
+                infiles = [line.rstrip("\n") for line in infiles]
+                #infiles가 리스트 형태로 저장이 된다.
+            
+                splitline = []
                 for i in range(len(infiles)):
-                    for j in range(5):
-                        infile.write(splitline[i][j])
-                        infile.write(" ")
-                    infile.write("\n")
+                    splitline.append(infiles[i].split()) #스플릿 한 걸 할당해준다.
+                
+                print("수정할 요소\n[1.도서명, 2.저자, 3.출판년도, 4.출판사, 5.장르, 6.수정종료]")
+                number = int(input("분류 번호 입력 : "))
+                
+                if(number == 1):
+                    remove_name1 = input("수정할 도서제목 : ")
+                    remove_name2 = input("새로운 도서제목 : ")
+                    for i in range(len(infiles)):
+                    #print(remove_name1)
+                    #print(splitline[i][0],"\n")
+                        if remove_name1 == splitline[i][0]:#if문 안에 들어가긴 한다.
 
+                            with open("c:/input.txt","at",encoding='UTF8') as infile:
+                                #라인삭제
+                                #del infiles[i]
+                                #라인에 0번째 요소를 바꿔서 입력한다.
+                                splitline[i][0] = remove_name2
+                                #print(splitline)
+                                infiles = list(splitline)
+                        else:
+                            continue
+                    with open("c:/input.txt","w",encoding='UTF8') as infile:
+                        for i in range(len(infiles)):
+                            for j in range(5):
+                                infile.write(splitline[i][j])
+                                infile.write(" ")
+                            infile.write("\n")
+                elif(number == 2):
+                    remove_name1 = input("수정할 도서제목 : ")
+                    remove_name2 = input("새로운 저자 : ")
+                    for i in range(len(infiles)):
+                    #print(remove_name1)
+                    #print(splitline[i][0],"\n")
+                        if remove_name1 == splitline[i][0]:#if문 안에 들어가긴 한다.
+
+                            with open("c:/input.txt","at",encoding='UTF8') as infile:
+                                #라인삭제
+                                #del infiles[i]
+                                #라인에 0번째 요소를 바꿔서 입력한다.
+                                splitline[i][1] = remove_name2
+                                #print(splitline)
+                                infiles = list(splitline)
+                        else:
+                            continue
+                    with open("c:/input.txt","w",encoding='UTF8') as infile:
+                        for i in range(len(infiles)):
+                            for j in range(5):
+                                infile.write(splitline[i][j])
+                                infile.write(" ")
+                            infile.write("\n")
+                elif(number == 3):
+                    remove_name1 = input("수정할 도서제목 : ")
+                    remove_name2 = input("새로운 출판년도 : ")
+                    for i in range(len(infiles)):
+                    #print(remove_name1)
+                    #print(splitline[i][0],"\n")
+                        if remove_name1 == splitline[i][0]:#if문 안에 들어가긴 한다.
+
+                            with open("c:/input.txt","at",encoding='UTF8') as infile:
+                                #라인삭제
+                                #del infiles[i]
+                                #라인에 0번째 요소를 바꿔서 입력한다.
+                                splitline[i][2] = remove_name2
+                                #print(splitline)
+                                infiles = list(splitline)
+                        else:
+                            continue
+                    with open("c:/input.txt","w",encoding='UTF8') as infile:
+                        for i in range(len(infiles)):
+                            for j in range(5):
+                                infile.write(splitline[i][j])
+                                infile.write(" ")
+                            infile.write("\n")
+                elif(number == 4):
+                    remove_name1 = input("수정할 도서제목 : ")
+                    remove_name2 = input("새로운 출판사 : ")
+                    for i in range(len(infiles)):
+                    #print(remove_name1)
+                    #print(splitline[i][0],"\n")
+                        if remove_name1 == splitline[i][0]:#if문 안에 들어가긴 한다.
+
+                            with open("c:/input.txt","at",encoding='UTF8') as infile:
+                                #라인삭제
+                                #del infiles[i]
+                                #라인에 0번째 요소를 바꿔서 입력한다.
+                                splitline[i][3] = remove_name2
+                                #print(splitline)
+                                infiles = list(splitline)
+                        else:
+                            continue
+                    with open("c:/input.txt","w",encoding='UTF8') as infile:
+                        for i in range(len(infiles)):
+                            for j in range(5):
+                                infile.write(splitline[i][j])
+                                infile.write(" ")
+                            infile.write("\n")
+                elif(number == 5):
+                    remove_name1 = input("수정할 도서제목 : ")
+                    remove_name2 = input("새로운 장르 : ")
+                    for i in range(len(infiles)):
+                    #print(remove_name1)
+                    #print(splitline[i][0],"\n")
+                        if remove_name1 == splitline[i][0]:#if문 안에 들어가긴 한다.
+
+                            with open("c:/input.txt","at",encoding='UTF8') as infile:
+                                #라인삭제
+                                #del infiles[i]
+                                #라인에 0번째 요소를 바꿔서 입력한다.
+                                splitline[i][4] = remove_name2
+                                #print(splitline)
+                                infiles = list(splitline)
+                        else:
+                            continue
+                    with open("c:/input.txt","w",encoding='UTF8') as infile:
+                        for i in range(len(infiles)):
+                            for j in range(5):
+                                infile.write(splitline[i][j])
+                                infile.write(" ")
+                            infile.write("\n")
+                elif(number == 6):
+                    print("[수정 완료!]")
+                    break
+                else:
+                    print(".")
+                    continue
+
+        
 
     #4. 도서 삭제 함수
     def delete_book():
